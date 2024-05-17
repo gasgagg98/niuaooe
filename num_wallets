@@ -1,0 +1,22 @@
+from web3.auto import w3
+from eth_account import Account
+
+def generate_wallets(num_wallets):
+    wallets = []
+    for _ in range(num_wallets):
+        account = Account.create()
+        wallet = {
+            "address": account.address,
+            "private_key": account.privateKey.hex()
+        }
+        wallets.append(wallet)
+    return wallets
+
+num_wallets = 5  # 您想要创建的钱包数量
+wallets = generate_wallets(num_wallets)
+
+for idx, wallet in enumerate(wallets):
+    print(f"Wallet {idx+1}:")
+    print(f"Address: {wallet['address']}")
+    print(f"Private Key: {wallet['private_key']}")
+    print()
